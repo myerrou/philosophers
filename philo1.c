@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   philo1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myerrou <myerrou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 10:29:24 by myerrou           #+#    #+#             */
-/*   Updated: 2024/12/17 10:29:25 by myerrou          ###   ########.fr       */
+/*   Updated: 2024/12/21 11:47:06 by myerrou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	destruction(t_data *sh_data)
 	}
 	pthread_mutex_destroy(&sh_data->meal);
 	pthread_mutex_destroy(&sh_data->dead);
-	pthread_mutex_destroy(&sh_data->write);
+	pthread_mutex_destroy(&sh_data->ring);
 }
 
 void	*philo_routine(void *arg)
@@ -34,18 +34,19 @@ void	*philo_routine(void *arg)
 	philo = (t_philo *)arg;
 	if (philo->data->nb_philos == 1)
 	{
-		message("%zu %d "FORK"\n", philo);
+		message("%zu %d " FORK "\n", philo);
 		ft_usleep(philo->data->time_to_die);
 		return (NULL);
 	}
 	if (philo->id % 2 == 0)
-		ft_usleep(10);
+		ft_usleep(1);
 	while (!dead(philo))
 	{
 		do_eating(philo);
 		do_sleeping(philo);
 		do_thinking(philo);
-		ft_usleep(1);
+		if (philo->data->nb_philos == 3)
+			ft_usleep(1);
 	}
 	return (arg);
 }

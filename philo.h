@@ -6,7 +6,7 @@
 /*   By: myerrou <myerrou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 10:29:28 by myerrou           #+#    #+#             */
-/*   Updated: 2024/12/17 10:29:29 by myerrou          ###   ########.fr       */
+/*   Updated: 2024/12/21 14:32:23 by myerrou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define DIE 	"has died"
-# define EAT	"is eating"
-# define SLEEP 	"is sleeping"
-# define THINK 	"is thinking"
-# define FORK 	"has taken a fork"
-# define ERROR 	"error, please enter the right amount of arguments"
+# define DIE "has died"
+# define EAT "is eating"
+# define SLEEP "is sleeping"
+# define THINK "is thinking"
+# define FORK "has taken a fork"
 
 typedef struct s_data
 {
@@ -40,7 +39,7 @@ typedef struct s_data
 	pthread_t		monitor;
 	pthread_mutex_t	meal;
 	pthread_mutex_t	dead;
-	pthread_mutex_t	write;
+	pthread_mutex_t	ring;
 	pthread_mutex_t	forks[200];
 }					t_data;
 
@@ -56,29 +55,28 @@ typedef struct s_philo
 	pthread_mutex_t	*fork_right;
 }					t_philo;
 
+// parse_init functions
+int					parse_args(int ac, char **av, t_data *data);
+void				init_data(t_philo *philo, t_data *data);
+void				init_locks(t_data *data);
+// philo2 functions
+void				message(char *str, t_philo *philo);
+void				do_sleeping(t_philo *philo);
+void				do_thinking(t_philo *philo);
+void				do_eating(t_philo *philo);
+int					dead(t_philo *philo);
+// philo1 functions
+void				monitor_routine(void *arg);
+void				*philo_routine(void *arg);
+void				destruction(t_data *data);
 // main functions
 int					philo_died(t_philo *philo);
 int					all_ate(t_philo *philo);
-// utils1 functions
+// utils functions
 int					ft_atoi(const char *str);
 int					ft_usleep(size_t time);
-void				print_error(int i);
+int					print_error(int error);
 int					is_alpha(char **av);
-// utils2 functions
-int					dead(t_philo *philo);
-void				message(char *str, t_philo *philo);
-void				do_eating(t_philo *philo);
-void				do_sleeping(t_philo *philo);
-void				do_thinking(t_philo *philo);
-// init functions
-void				init_data(t_philo *philo, t_data *data);
-void				init_locks(t_data *data);
-void				destruction(t_data *data);
-// parsing functions
-int					parse_args(int ac, char **av, t_data *data);
-// philo functions
-void				*philo_routine(void *arg);
-void				monitor_routine(void *arg);
-size_t				get_current_time(void);
+size_t				get_time(void);
 
 #endif

@@ -2,16 +2,16 @@
 NAME = philo
 
 SRCS = main.c \
-		philo.c \
-		utils1.c \
-		utils2.c \
+		philo1.c \
+		philo2.c \
+		utils.c \
 		parse_init.c \
 
 OBJS = $(SRCS:.c=.o)
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -pthread -g3 -fsanitize=thread,undefined
+CFLAGS = -Wall -Wextra -Werror -pthread #-g3 -fsanitize=thread,undefined
 
 all: $(NAME)
 

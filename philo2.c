@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils2.c                                           :+:      :+:    :+:   */
+/*   philo2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myerrou <myerrou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 10:29:37 by myerrou           #+#    #+#             */
-/*   Updated: 2024/12/17 10:29:38 by myerrou          ###   ########.fr       */
+/*   Updated: 2024/12/21 10:37:31 by myerrou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	do_eating(t_philo *philo)
 	}
 	message("%zu %d " EAT "\n", philo);
 	pthread_mutex_lock(&philo->data->meal);
-	philo->last_meal = get_current_time();
+	philo->last_meal = get_time();
 	philo->nb_eaten++;
 	pthread_mutex_unlock(&philo->data->meal);
 	ft_usleep(philo->data->time_to_eat);
@@ -54,9 +54,9 @@ void	message(char *str, t_philo *philo)
 {
 	if (dead(philo))
 		return ;
-	pthread_mutex_lock(&philo->data->write);
-	printf(str, get_current_time() - philo->data->start_time, philo->id);
-	pthread_mutex_unlock(&philo->data->write);
+	pthread_mutex_lock(&philo->data->ring);
+	printf(str, get_time() - philo->data->start_time, philo->id);
+	pthread_mutex_unlock(&philo->data->ring);
 }
 
 void	do_sleeping(t_philo *philo)
@@ -68,4 +68,5 @@ void	do_sleeping(t_philo *philo)
 void	do_thinking(t_philo *philo)
 {
 	message("%zu %d " THINK "\n", philo);
+	usleep(100);
 }
