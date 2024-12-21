@@ -6,7 +6,7 @@
 /*   By: myerrou <myerrou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 10:29:37 by myerrou           #+#    #+#             */
-/*   Updated: 2024/12/21 10:37:31 by myerrou          ###   ########.fr       */
+/*   Updated: 2024/12/21 15:58:16 by myerrou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	message(char *str, t_philo *philo)
 {
 	if (dead(philo))
 		return ;
-	pthread_mutex_lock(&philo->data->ring);
+	pthread_mutex_lock(&philo->data->execute);
 	printf(str, get_time() - philo->data->start_time, philo->id);
-	pthread_mutex_unlock(&philo->data->ring);
+	pthread_mutex_unlock(&philo->data->execute);
 }
 
 void	do_sleeping(t_philo *philo)

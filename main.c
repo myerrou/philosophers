@@ -6,7 +6,7 @@
 /*   By: myerrou <myerrou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 10:29:02 by myerrou           #+#    #+#             */
-/*   Updated: 2024/12/21 14:40:41 by myerrou          ###   ########.fr       */
+/*   Updated: 2024/12/21 15:58:16 by myerrou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	philo_died(t_philo *philo)
 			pthread_mutex_lock(&philo->data->dead);
 			pthread_mutex_unlock(&philo->data->meal);
 			philo->data->end_simulation = 1;
-			pthread_mutex_lock(&philo->data->ring);
+			pthread_mutex_lock(&philo->data->execute);
 			pthread_mutex_unlock(&philo->data->dead);
 			printf("%zu %d " DIE "\n", get_time() - philo->data->start_time,
 				philo[i].id);
-			pthread_mutex_unlock(&philo->data->ring);
+			pthread_mutex_unlock(&philo->data->execute);
 			return (1);
 		}
 		pthread_mutex_unlock(&philo->data->meal);

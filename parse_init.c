@@ -6,7 +6,7 @@
 /*   By: myerrou <myerrou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 10:29:12 by myerrou           #+#    #+#             */
-/*   Updated: 2024/12/21 14:37:39 by myerrou          ###   ########.fr       */
+/*   Updated: 2024/12/21 15:58:16 by myerrou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,5 @@ void	init_locks(t_data *data)
 	data->end_simulation = 0;
 	pthread_mutex_init(&data->dead, NULL);
 	pthread_mutex_init(&data->meal, NULL);
-	pthread_mutex_init(&data->ring, NULL);
+	pthread_mutex_init(&data->execute, NULL);
 }

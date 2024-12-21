@@ -6,7 +6,7 @@
 /*   By: myerrou <myerrou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 10:29:24 by myerrou           #+#    #+#             */
-/*   Updated: 2024/12/21 11:47:06 by myerrou          ###   ########.fr       */
+/*   Updated: 2024/12/21 15:58:16 by myerrou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	destruction(t_data *sh_data)
 	}
 	pthread_mutex_destroy(&sh_data->meal);
 	pthread_mutex_destroy(&sh_data->dead);
-	pthread_mutex_destroy(&sh_data->ring);
+	pthread_mutex_destroy(&sh_data->execute);
 }
 
 void	*philo_routine(void *arg)

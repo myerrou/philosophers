@@ -6,7 +6,7 @@
 /*   By: myerrou <myerrou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 10:29:28 by myerrou           #+#    #+#             */
-/*   Updated: 2024/12/21 14:32:23 by myerrou          ###   ########.fr       */
+/*   Updated: 2024/12/21 15:58:16 by myerrou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_data
 	pthread_t		monitor;
 	pthread_mutex_t	meal;
 	pthread_mutex_t	dead;
-	pthread_mutex_t	ring;
+	pthread_mutex_t	execute;
 	pthread_mutex_t	forks[200];
 }					t_data;
 
