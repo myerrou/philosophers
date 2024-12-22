@@ -6,7 +6,7 @@
 /*   By: myerrou <myerrou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 10:29:33 by myerrou           #+#    #+#             */
-/*   Updated: 2024/12/21 14:37:48 by myerrou          ###   ########.fr       */
+/*   Updated: 2024/12/22 21:12:06 by myerrou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,5 @@ int	print_error(int error)
 		printf("Error, meals count should be greater than 0\n");
 	else if (error == 4)
 		printf("Error, arguments should be greater than 0\n");
-	exit(1);
+	return (0);
 }
